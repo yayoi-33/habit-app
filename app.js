@@ -364,7 +364,7 @@ function renderSheet(){
         <div class="dayNum"> ${dayNo}</div>
         <button class="editBtn" type="button" data-edit="${i}">+</button>
       </div>
-      <div class="${targetClass}" id="t_${i}">${escapeHtml(targetText || "（未設定）")}</div>
+     <div class="${targetClass}" id="t_${i}">${escapeHtml(targetText || "")}</div>
       <div class="stamp">DONE</div>
     `;
 
@@ -390,7 +390,7 @@ function renderSheet(){
 
       const t = $(`t_${idx}`);
       const trimmed = input.trim();
-      t.textContent = trimmed || "（未設定）";
+     t.textContent = trimmed || "";
       t.className = trimmed ? "target" : "target muted";
 
       localStorage.setItem(sheetKey(activeSheetId), JSON.stringify(sheetState));
