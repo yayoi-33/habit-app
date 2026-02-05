@@ -72,9 +72,24 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 /* Challenge grid */
 .grid{
   display:grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* ←5列 */
   gap:10px;
 }
+
+/* 正方形セル */
+.cell{
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  aspect-ratio: 1 / 1;   /* ←追加 */
+  cursor:pointer;
+  user-select:none;
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+}
+
 .cell{
   position:relative;
   border:1px solid var(--border);
@@ -287,9 +302,3 @@ textarea{ resize:vertical; }
 .listTitle{ font-weight:800; }
 .listBtns{ display:flex; gap:8px; flex-wrap:wrap; }
 
-@media (max-width: 720px){
-  .grid{ grid-template-columns: repeat(5, 1fr); }
-}
-@media (max-width: 520px){
-  .grid{ grid-template-columns: repeat(3, 1fr); }
-}
