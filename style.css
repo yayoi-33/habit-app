@@ -80,15 +80,16 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 .cell{
   position:relative;
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-  aspect-ratio: 1 / 1;   /* ←追加 */
+  border-radius:12px;
+  padding:6px;                 /* 小さく */
+  aspect-ratio: 1 / 1;
   cursor:pointer;
   user-select:none;
   display:flex;
   flex-direction:column;
   background:#fff;
 }
+
 
 .cell{
   position:relative;
@@ -103,19 +104,26 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
   background:#fff;
 }
 .day{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
-.dayNum{ font-weight:900; font-size:18px; }
+.dayNum{ font-weight:800; font-size:14px; }
 .editBtn{
-  cursor:pointer;
+  position:absolute;
+  right:6px;
+  bottom:6px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
   border:1px solid var(--border);
   background:#fff;
-  border-radius:999px;
-  padding:6px 10px;
-  font-size:12px;
-  color:#111;
-}
-.target{
-  margin-top:12px;
   font-size:18px;
+  line-height:26px;
+  padding:0;
+  color:#111;
+  cursor:pointer;
+}
+
+.target{
+  margin-top:6px;
+  font-size:14px;
   font-weight:700;
   line-height:1.25;
   flex:1;
