@@ -82,7 +82,7 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
   border:1px solid var(--border);
   border-radius:12px;
   padding:6px;                 /* 小さく */
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1.1;   /* 少し縦長 */
   cursor:pointer;
   user-select:none;
   display:flex;
