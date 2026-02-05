@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>チャレンジ & ダイアリー</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="titleRow">
+      <div class="appTitle">チャレンジ管理</div>
+      <button id="saveBtn" class="btn">保存</button>
+      <button id="resetBtn" class="btn btnGhost">リセット</button>
+    </div>
+
+    <div class="tabs">
+      <button id="tabChallenge" class="tab active" type="button">チャレンジ</button>
+      <button id="tabDiary" class="tab" type="button">ダイアリー</button>
+    </div>
+
+    <div class="help" id="helpText"></div>
+  </header>
+
+  <main>
+    <!-- チャレンジ -->
+    <section id="pageChallenge" class="page">
+      <div id="sheetTabsHost"></div>
+
+      <div class="sheetHeader">
+        <input id="challengeTitle" class="titleInput" value="30日チャレンジ" />
+      </div>
+
+      <section class="grid" id="grid"></section>
+
+      <!-- 背景色（下に） -->
+      <div class="lowPriorityBox">
+        <div class="bgRow">
+          <div class="bgLabel">背景カラー</div>
+          <input id="bgColor" type="color" />
+          <button id="bgClear" class="btn btnGhost" type="button">リセット</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ダイアリー：月間カレンダー -->
+    <section id="pageDiary" class="page hidden">
+      <div class="diaryHeader">
+        <div class="monthNav">
+          <button id="prevMonth" class="btn btnGhost" type="button">←</button>
+          <div id="monthLabel" class="monthLabel">2026年2月</div>
+          <button id="nextMonth" class="btn btnGhost" type="button">→</button>
+        </div>
+      </div>
+
+      <div class="calendar" id="calendar"></div>
+    </section>
+  </main>
+
+  <!-- ダイアリー編集モーダル -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modalCard">
+      <div class="modalTop">
+        <div id="modalDateLabel" class="modalTitle">2026-02-05</div>
+        <button id="closeModal" class="btn btnGhost" type="button">閉じる</button>
+      </div>
+
+      <div class="row">
+        <div class="label">体重（kg）</div>
+        <input id="weight" type="number" inputmode="decimal" step="0.1" placeholder="例：52.3" />
+      </div>
+
+      <div class="row">
+        <div class="label">体調</div>
+        <div class="condRow">
+          <button type="button" class="chip" data-cond="1">1</button>
+          <button type="button" class="chip" data-cond="2">2</button>
+          <button type="button" class="chip" data-cond="3">3</button>
+          <button type="button" class="chip" data-cond="4">4</button>
+          <button type="button" class="chip" data-cond="5">5</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">天気</div>
+        <div class="weatherRow">
+          <button type="button" class="chip" data-weather="晴れ">☀️</button>
+          <button type="button" class="chip" data-weather="くもり">☁️</button>
+          <button type="button" class="chip" data-weather="雨">🌧️</button>
+          <button type="button" class="chip" data-weather="雪">❄️</button>
+          <button type="button" class="chip" data-weather="風">💨</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">メモ</div>
+        <textarea id="diaryMemo" rows="6" placeholder=""></textarea>
+      </div>
+
+      <div class="row">
+        <div class="label">画像</div>
+        <input id="diaryImage" type="file" accept="image/*" />
+        <div id="imagePreviewWrap" class="imagePreviewWrap hidden">
+          <img id="imagePreview" alt="添付画像プレビュー" />
+          <div class="imgBtnRow">
+            <button id="removeImage" class="btn btnGhost" type="button">外す</button>
+            <button id="openImage" class="btn btnGhost" type="button">全画面</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modalActions">
+        <button id="diarySaveBtn" class="btn" type="button">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 画像フルスクリーン -->
+  <div id="imgModal" class="modal hidden" aria-hidden="true">
+    <div class="imgModalCard">
+      <div class="modalTop">
+        <div id="imgModalTitle" class="modalTitle">画像</div>
+        <button id="closeImgModal" class="btn btnGhost" type="button">閉じる</button>
+      </div>
+
+      <img id="imgFull" alt="添付画像（全画面）" />
+
+      <div class="modalActions imgActions">
+        <a id="downloadImg" class="btn btnGhost" href="#" download="diary-image.jpg">保存（ダウンロード）</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- タブ管理 -->
+  <div id="tabModal" class="modal hidden" aria-hidden="true">
+    <div class="modalCard">
+      <div class="modalTop">
+        <div class="modalTitle">タブ管理</div>
+        <button id="closeTabModal" class="btn btnGhost" type="button">閉じる</button>
+      </div>
+      <div class="row">
+        <div class="label">非表示のタブ</div>
+        <div id="hiddenTabsList" class="list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
