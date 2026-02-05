@@ -72,8 +72,8 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 /* Challenge grid */
 .grid{
   display:grid;
-  grid-template-columns: repeat(5, 1fr); /* ←5列 */
-  gap:10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5列固定で潰れない */
+  gap:6px; /* 10px→6px */
 }
 
 /* 正方形セル */
@@ -94,46 +94,54 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 .cell{
   position:relative;
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-  min-height:140px;
+  border-radius:10px;
+  padding:4px;                 /* 6→4 */
+  aspect-ratio: 1 / 1;
   cursor:pointer;
   user-select:none;
   display:flex;
   flex-direction:column;
   background:#fff;
 }
+
 .day{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
-.dayNum{ font-weight:800; font-size:14px; }
+.dayNum{
+  font-weight:800;
+  font-size:12px;  /* 14→12 */
+  line-height:1;
+}
+
 .editBtn{
   position:absolute;
-  right:6px;
-  bottom:6px;
-  width:28px;
-  height:28px;
+  right:4px;
+  bottom:4px;
+  width:22px;         /* 28→22 */
+  height:22px;        /* 28→22 */
   border-radius:50%;
   border:1px solid var(--border);
   background:#fff;
-  font-size:18px;
-  line-height:26px;
+  font-size:16px;
+  line-height:20px;
   padding:0;
   color:#111;
   cursor:pointer;
 }
 
+
 .target{
-  margin-top:6px;
-  font-size:14px;
+  margin-top:4px;     /* 6→4 */
+  font-size:12px;     /* 14→12 */
   font-weight:700;
-  line-height:1.25;
+  line-height:1.15;
   flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:0 6px;
+  padding:0 4px;
   white-space:pre-wrap;
 }
+
 .target.muted{ color:var(--muted); font-weight:600; font-size:16px; }
 
 .stamp{
