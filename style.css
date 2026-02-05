@@ -129,16 +129,16 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 
 
 .target{
-  margin-top:4px;     /* 6→4 */
-  font-size:12px;     /* 14→12 */
+  margin-top:4px;
+  font-size:12px;
   font-weight:700;
   line-height:1.15;
   flex:1;
   display:flex;
-  align-items:center;
+  align-items:flex-start;   /* 上寄せ */
   justify-content:center;
   text-align:center;
-  padding:0 4px;
+  padding:4px 4px 28px;     /* 下に大きめ余白 */
   white-space:pre-wrap;
 }
 
