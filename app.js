@@ -362,7 +362,7 @@ function renderSheet(){
     cell.innerHTML = `
       <div class="day">
         <div class="dayNum">DAY ${dayNo}</div>
-        <button class="editBtn" type="button" data-edit="${i}">編集</button>
+        <button class="editBtn" type="button" data-edit="${i}">+</button>
       </div>
       <div class="${targetClass}" id="t_${i}">${escapeHtml(targetText || "（未設定）")}</div>
       <div class="stamp">DONE</div>
