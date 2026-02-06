@@ -365,7 +365,7 @@ function renderSheet(){
         <button class="editBtn" type="button" data-edit="${i}">+</button>
       </div>
      <div class="${targetClass}" id="t_${i}">${escapeHtml(targetText || "")}</div>
-      <div class="stamp">DONE</div>
+      <button class="stampBtn" type="button" data-stamp="${i}">${sheetState.done[i] ? "♥" : "♡"}</button>
     `;
 
     cell.addEventListener("click",(e)=>{
