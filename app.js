@@ -120,50 +120,58 @@ function renderSheetTabs(){
   const host = $("sheetTabsHost");
   host.innerHTML = "";
 
-  const row = document.createElement("div");
-  row.className = "tabs";
+  const grid = document.createElement("div");
+  grid.className = "sheetIndex";
 
   visibleTabs.forEach((id) => {
     const title = getTabTitle(id);
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "tab" + (id===activeSheetId ? " active" : "");
-    btn.title = title;
 
-    const label = document.createElement("span");
-    label.textContent = shorten(title, 10) || "（無題）";
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "sheetCard" + (id === activeSheetId ? " active" : "");
+    card.addEventListener("click", () => switchSheet(id));
+
+    const t = document.createElement("div");
+    t.className = "sheetCardTitle";
+    t.textContent = title || "（無題）";
+
+    const mini = document.createElement("div");
+    mini.className = "sheetCardMini";
 
     const x = document.createElement("button");
     x.type = "button";
-    x.className = "xBtn";
+    x.className = "btn btnGhost";
     x.textContent = "×";
-    x.addEventListener("click",(e)=>{
+    x.addEventListener("click", (e) => {
       e.stopPropagation();
       askRemoveMode(id);
     });
 
-    btn.addEventListener("click",()=> switchSheet(id));
+    mini.appendChild(x);
 
-    btn.appendChild(label);
-    btn.appendChild(x);
-    row.appendChild(btn);
+    card.appendChild(t);
+    card.appendChild(mini);
+
+    grid.appendChild(card);
   });
 
-  const addBtn = document.createElement("button");
-  addBtn.type="button";
-  addBtn.className="tab";
-  addBtn.textContent="＋ 追加";
-  addBtn.addEventListener("click", addSheetTab);
-  row.appendChild(addBtn);
+  // 追加カード
+  const add = document.createElement("button");
+  add.type = "button";
+  add.className = "sheetCard";
+  add.addEventListener("click", addSheetTab);
+  add.innerHTML = `<div class="sheetCardTitle">＋ 追加</div><div class="sheetCardMini"></div>`;
+  grid.appendChild(add);
 
-  const manageBtn = document.createElement("button");
-  manageBtn.type="button";
-  manageBtn.className="tab";
-  manageBtn.textContent="管理";
-  manageBtn.addEventListener("click", openTabManager);
-  row.appendChild(manageBtn);
+  // 管理カード（非表示タブ復元）
+  const manage = document.createElement("button");
+  manage.type = "button";
+  manage.className = "sheetCard";
+  manage.addEventListener("click", openTabManager);
+  manage.innerHTML = `<div class="sheetCardTitle">管理（非表示の復元）</div><div class="sheetCardMini"></div>`;
+  grid.appendChild(manage);
 
-  host.appendChild(row);
+  host.appendChild(grid);
 }
 
 function addSheetTab(){
@@ -397,6 +405,21 @@ function renderSheet(){
     });
   });
 }
+grid.querySelectorAll("[data-stamp]").forEach((btn)=>{
+  btn.addEventListener("click",(e)=>{
+    e.stopPropagation();
+
+    const idx = Number(btn.dataset.stamp);
+    sheetState.done[idx] = !sheetState.done[idx];
+
+    // 表示切り替え
+    btn.textContent = sheetState.done[idx] ? "♥" : "♡";
+    btn.closest(".cell").classList.toggle("done", sheetState.done[idx]);
+
+    // 保存
+    localStorage.setItem(sheetKey(activeSheetId), JSON.stringify(sheetState));
+  });
+});
 
 function applySheetBg(){
   document.documentElement.style.setProperty("--sheet-bg", sheetState.bgColor || "#ffffff");
