@@ -144,30 +144,23 @@ main{ max-width:980px; margin:0 auto; padding:0 16px 24px; }
 
 .target.muted{ color:var(--muted); font-weight:600; font-size:16px; }
 
-/* 真ん中♡ボタン（iPhoneでもズレない） */
-.stampBtn{
+.stamp{
   position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%, -50%);
-  width:40px;
-  height:40px;
+  inset:auto 12px 12px auto;
+  transform: rotate(-12deg);
+  border:2px solid #d00;
+  color:#d00;
+  padding:6px 10px;
   border-radius:999px;
-  border:1px solid var(--border);
-  background:#fff;
-  font-size:22px;
-  line-height:38px;
-  padding:0;
-  cursor:pointer;
-  opacity:.55;
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:1px;
+  display:none;
 }
 
-/* 達成時は濃く */
-.cell.done .stampBtn{
-  opacity:1;
-  border-color:#111;
+.cell.done .stamp{
+  display:block;
 }
-
 
 /* low priority box */
 .lowPriorityBox{
